@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Gerardojbaez\Messenger\Facades\Messenger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +19,8 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function home() {
+    public function home()
+    {
         return view('home');
     }
 }

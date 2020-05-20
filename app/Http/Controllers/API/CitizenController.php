@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Citizen;
-use Illuminate\Http\Request;
+use App\Models\Citizen;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Symfony\Component\DomCrawler\Crawler;
-
 
 class CitizenController extends Controller
 {
-    function parseName($str)
+    public function parseName($str)
     {
-        return str_replace(" ", "", lcfirst(ucwords(strtolower($str))));
+        return str_replace(' ', '', lcfirst(ucwords(strtolower($str))));
     }
 
     /**
@@ -25,8 +24,9 @@ class CitizenController extends Controller
      * @apiSuccess {String} firstname Firstname of the User.
      * @apiSuccess {String} lastname  Lastname of the User.
      */
-    function getCitizen ($server, $id) {
-        $crawler = new Crawler(file_get_contents('http://'.$server.'.e-sim.org/profile.html?id=' . $id));
+    public function getCitizen($server, $id)
+    {
+        $crawler = new Crawler(file_get_contents('http://'.$server.'.e-sim.org/profile.html?id='.$id));
         //$crawler = new Crawler(file_get_contents(__DIR__ . '\test.html'));
 
         $citizen = new \stdClass();
@@ -37,7 +37,7 @@ class CitizenController extends Controller
 
         $table = $crawler->filter('.smallTableFont');
         foreach ($table->children() as $child) {
-            $arr = explode(":", $child->nodeValue);
+            $arr = explode(':', $child->nodeValue);
             $name = $this->parseName($arr[0]);
             $citizen->{$name} = trim($arr[1]);
         }
@@ -59,19 +59,19 @@ class CitizenController extends Controller
             $cit->save();
         }
 
-
         return response()->json($citizen);
-
     }
 
-    function getByName($server, $name) {
+    public function getByName($server, $name)
+    {
         $cit = Citizen::where('name', $name);
         if ($cit->count() == 1) {
             return $this->getCitizen($server, $cit->first()->id);
         }
 
         $error = new \stdClass();
-        $error->message = "Citizen not linked";
+        $error->message = 'Citizen not linked';
+
         return response()->json($error);
     }
 }
