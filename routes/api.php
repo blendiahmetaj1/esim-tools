@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Symfony\Component\DomCrawler\Crawler;
 
 /*
@@ -15,7 +15,7 @@ use Symfony\Component\DomCrawler\Crawler;
 |
 */
 
-Route::prefix('{server}')->group(function() {
+Route::prefix('{server}')->group(function () {
 
     // Economy
     Route::get('/product/{resource}/{country}/{quality}', 'API\EconomyController@getProducts');
@@ -30,5 +30,5 @@ Route::prefix('{server}')->group(function() {
     // Political
 
     // Military
-	Route::get('/battle/{country}', 'API\BattleController@getAll');
+    Route::get('/battle/{country}', 'API\BattleController@getAll');
 });

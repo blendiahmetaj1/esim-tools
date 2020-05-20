@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,28 +15,28 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-
 Auth::routes();
 
 Route::get('/', 'HomeController@home');
 
-Route::get('/products', function() {
+Route::get('/products', function () {
     return view('product');
 });
 
-Route::get('/exchange', function() {
+Route::get('/exchange', function () {
     return view('exchange');
 });
 
-Route::get('/jobs', function() {
+Route::get('/jobs', function () {
     return view('jobs');
 });
 
-Route::get('/company', function() {
-   return view('company');
+Route::get('/company', function () {
+    return view('company');
 });
 
-Route::get('/change-server/{server}', function($server) {
+Route::get('/change-server/{server}', function ($server) {
     Session::put('esim_server', $server);
+
     return Session::get('esim_server');
 });
