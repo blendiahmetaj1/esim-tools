@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Citizen;
 use App\Http\Controllers\Controller;
+use App\Models\Citizen;
 use Illuminate\Http\Request;
 use Symfony\Component\DomCrawler\Crawler;
 
