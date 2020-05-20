@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Gerardojbaez\Messenger\Contracts\MessageableInterface;
 use Gerardojbaez\Messenger\Traits\Messageable;

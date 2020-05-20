@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Gerardojbaez\Messenger\Facades\Messenger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
